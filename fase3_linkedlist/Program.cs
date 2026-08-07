@@ -30,4 +30,56 @@ namespace DataCore.Fase3
             Siguiente = null;
         }
     }
+
+    public class TablaDinamica
+    {
+        private NodoRegistro? cabeza;
+        private int contadorRegistros;
+
+        public TablaDinamica()
+        {
+            cabeza = null;
+            contadorRegistros = 0;
+        }
+
+        public int ContadorRegistros => contadorRegistros;
+
+        public void InsertarInicio(RegistroDatos nuevoRegistro)
+        {
+            NodoRegistro nuevoNodo = new NodoRegistro(nuevoRegistro);
+            nuevoNodo.Siguiente = cabeza;
+            cabeza = nuevoNodo;
+            contadorRegistros++;
+        }
+
+
+        public void InsertarFinal(RegistroDatos nuevoRegistro)
+        {
+            NodoRegistro nuevoNodo = new NodoRegistro(nuevoRegistro);
+
+            if (cabeza == null)
+            {
+                cabeza = nuevoNodo;
+            }
+            else
+            {
+                NodoRegistro actual = cabeza;
+                // Recorre hasta el último nodo
+                while (actual.Siguiente != null)
+                {
+                    actual = actual.Siguiente;
+                }
+                actual.Siguiente = nuevoNodo;
+            }
+            contadorRegistros++;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Probando compilacion de Fase 3...");
+        }
+    }
 }
+    
